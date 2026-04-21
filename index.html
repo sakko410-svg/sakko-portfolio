@@ -3,114 +3,111 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SAHA SAKKOR Portfolio</title>
+<title>SAHA SAKKOR | Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;500;700&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#080808;color:#ede9df;font-family:'Noto Sans JP',sans-serif;overflow-x:hidden}
-.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.12) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.12) 40px);animation:gridMove 18s linear infinite}
-@keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(40px)}}
-.pf{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.15fr;min-height:100vh}
-.left{position:relative;min-height:100vh;overflow:hidden}
-.left img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:grayscale(100%) contrast(1.08) brightness(.82)}
-.left::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 45%,#080808 100%),linear-gradient(to top,#080808 0%,transparent 35%)}
-.name{position:absolute;left:28px;bottom:28px;z-index:2}
-.name h1{font-family:'Bebas Neue',sans-serif;font-size:78px;line-height:.88;letter-spacing:.02em}
-.name p{font-family:'Space Mono',monospace;font-size:11px;opacity:.65;letter-spacing:.18em;text-transform:uppercase;margin-top:8px}
-.right{padding:32px 28px;display:flex;flex-direction:column;gap:16px;justify-content:center}
-.section-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;color:#d63b1a;text-transform:uppercase}
-.card{border:1px solid rgba(255,255,255,.08);border-left:2px solid #d63b1a;padding:14px 16px;background:rgba(255,255,255,.02);backdrop-filter:blur(4px);opacity:0;transform:translateY(30px);transition:all .8s ease}
-.card:hover{transform:translateY(-4px)}
-.work-title{font-size:18px;font-weight:500;margin:6px 0;color:rgba(237,233,223,.96)}
-.work-desc{font-size:13px;line-height:1.75;color:rgba(237,233,223,.62)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
-.stat{border:1px solid rgba(255,255,255,.06);padding:12px;text-align:center}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;color:#ede9df}
-.stat-label{font-size:10px;letter-spacing:.12em;opacity:.5}
-@media(max-width:768px){
-.pf{grid-template-columns:1fr}
-.left{min-height:52vh}
-.left::after{background:linear-gradient(to top,#080808 0%,transparent 55%)}
-.name h1{font-size:52px}
-.right{padding:22px}
-.stats{grid-template-columns:1fr 1fr 1fr}
+:root {
+    --accent: #d63b1a;
+    --bg: #080808;
+    --text: #ede9df;
+    --card-bg: rgba(255, 255, 255, 0.02);
 }
 
-.timeline{position:relative;padding-left:18px}
-.timeline::before{content:'';position:absolute;left:5px;top:4px;bottom:4px;width:1px;background:rgba(214,59,26,.45)}
-.timeline-item{position:relative;padding:10px 0 10px 12px}
-.timeline-item::before{content:'';position:absolute;left:-1px;top:18px;width:8px;height:8px;border-radius:50%;background:#d63b1a;box-shadow:0 0 12px rgba(214,59,26,.45)}
-.skills-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.skill-chip{font-family:'Space Mono',monospace;font-size:10px;padding:6px 10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);letter-spacing:.06em}
-.hero-line{height:1px;background:linear-gradient(90deg,#d63b1a 0%,rgba(214,59,26,0) 100%);margin:10px 0 18px}
-.glow{box-shadow:0 0 30px rgba(214,59,26,.08)}
-</style>
-</head>
-<body>
-<div class="grid-bg"></div>
-<div class="pf">
-  <div class="left">
-    <img src="image.png" alt="SAHA SAKKOR">
-    <div class="name">
-      <h1>SAHA<br>SAKKOR</h1>
-      <p>Creative Producer</p>
-    </div>
-  </div>
-  <div class="right">
-    <div class="section-tag">Career</div><div class="hero-line"></div>
-    <div class="card glow"><div class="timeline">
-      <div class="timeline-item"><div class="work-title">2021–2025 東京都立大学</div><div class="work-desc">在学中3社にてインターン経験。営業・企画・制作を横断して実務経験を蓄積。</div></div>
-      <div class="timeline-item"><div class="work-title">2025.4 CyberAgent / AbemaTV</div><div class="work-desc">広告営業・番組企画・クリエイティブディレクションに従事。</div></div>
-      <div class="timeline-item"><div class="work-title">2025.10 Freelance → SuiSui設立</div><div class="work-desc">独立後、Creative全般のプロデュース・ディレクションに加え、SuiSuiを立ち上げ。配信・SNS・映像演出・事業開発まで一気通貫で支援。</div></div>
-    </div></div>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;overflow-x:hidden;-webkit-font-smoothing: antialiased;}
 
-    <div class="section-tag">Selected Works</div>
-    <div class="card">
-      <div class="work-title">App Creative Direction</div>
-      <div class="work-desc">アプリのクリエイティブ演出を10本以上プロデュース。コンセプト設計からビジュアル・映像表現まで一気通貫でディレクション。</div>
-    </div>
-    <div class="card">
-      <div class="work-title">SNS Strategy & Consulting</div>
-      <div class="work-desc">複数クライアントのSNSアカウント戦略立案・運用を担当。ブランドのオンライン存在感をゼロから設計。</div>
-    </div>
-    <div class="card">
-      <div class="work-title">Program Direction</div>
-      <div class="work-desc">番組のコンテンツ企画・ディレクションに従事。映像とビジネスをつなぐ視点で、場と空気をつくる。</div>
-    </div>
+/* --- 演出1: フィルムノイズテクスチャ --- */
+body::after {
+    content: "";
+    position: fixed;
+    top: -100%; left: -100%; width: 300%; height: 300%;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Grain.png");
+    opacity: 0.04; pointer-events: none; z-index: 100;
+    animation: noise 0.2s infinite;
+}
+@keyframes noise {
+    0% { transform: translate(0,0) }
+    10% { transform: translate(-5%,-5%) }
+    20% { transform: translate(-10%,5%) }
+    80% { transform: translate(5%,-10%) }
+    100% { transform: translate(0,0) }
+}
 
-    <div class="section-tag">Can Do</div>
-    <div class="card">
-      <div class="work-title">CAN DO EVERYTHING</div>
-      <div class="work-desc">Creative Produce / SNS運用 / 映像演出 / 番組制作 / 広告企画 / コンセプト設計 / 事業開発</div>
-      <div class="skills-row"><span class="skill-chip">Creative Produce</span><span class="skill-chip">SNS</span><span class="skill-chip">映像演出</span><span class="skill-chip">配信</span><span class="skill-chip">Business Dev</span></div>
-    </div>
+/* --- 背景グリッド（より繊細に） --- */
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 49px,rgba(255,255,255,.1) 50px),repeating-linear-gradient(90deg,transparent,transparent 49px,rgba(255,255,255,.1) 50px);}
 
-    <div class="stats">
-      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">WORKS</div></div>
-      <div class="stat"><div class="stat-num">3+</div><div class="stat-label">CLIENTS</div></div>
-      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">CREATIVE</div></div>
-    </div>
-  </div>
-  </div>
-  </div>
-</div>
-<script>
-window.addEventListener('DOMContentLoaded', function(){
-  const observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.style.opacity='1';
-        entry.target.style.transform='translateY(0)';
-      }
-    });
-  }, {threshold:0.15});
-  document.querySelectorAll('.card,.stat').forEach(function(el, i){
-    el.style.transitionDelay = (i * 0.12) + 's';
-    observer.observe(el);
-  });
-});
-</script>
-</body>
-</html>
+/* --- レイアウト構造 --- */
+.pf{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.2fr;min-height:100vh}
+
+/* --- 左側：シネマティック画像エリア --- */
+.left{position:relative;height:100vh;overflow:hidden;position:sticky;top:0;}
+.left img{
+    width:100%;height:100%;object-fit:cover;object-position:center top;
+    filter:grayscale(100%) contrast(1.1) brightness(0.7);
+    transform:scale(1.1);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-img img { transform: scale(1); } /* 登場時にズームアウト */
+
+.left::after{
+    content:'';position:absolute;inset:0;
+    background: linear-gradient(90deg, transparent 60%, var(--bg) 100%),
+                linear-gradient(0deg, var(--bg) 0%, transparent 40%);
+}
+
+.name{position:absolute;left:40px;bottom:60px;z-index:2}
+.name h1{
+    font-family:'Bebas Neue',sans-serif;font-size:clamp(60px, 10vw, 110px);
+    line-height:.82;letter-spacing:-0.02em;
+    overflow: hidden;
+}
+.name h1 span {
+    display: block;
+    transform: translateY(100%);
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.reveal-text h1 span { transform: translateY(0); }
+
+.name p{
+    font-family:'Space Mono',monospace;font-size:12px;opacity:0;
+    letter-spacing:.4em;text-transform:uppercase;margin-top:15px;
+    transition: all 1s ease 0.5s;
+}
+.reveal-text p { opacity: 0.6; transform: translateX(10px); }
+
+/* --- 右側：コンテンツ --- */
+.right{padding:80px 60px;display:flex;flex-direction:column;gap:40px}
+
+.section-tag{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.3em;
+    color:var(--accent);text-transform:uppercase;margin-bottom:10px;
+    display: flex; align-items: center; gap: 10px;
+}
+.section-tag::before { content: ""; width: 20px; height: 1px; background: var(--accent); }
+
+/* --- カードデザイン：磁気のようなホバー --- */
+.reveal-item { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal-item.is-visible { opacity: 1; transform: translateY(0); }
+
+.card{
+    border: 1px solid rgba(255,255,255,0.05); border-left: 2px solid transparent;
+    padding: 24px; background: var(--card-bg); backdrop-filter: blur(10px);
+    transition: all 0.4s ease; cursor: pointer; position: relative;
+}
+.card:hover{
+    background: rgba(255,255,255,0.05); border-left: 2px solid var(--accent);
+    transform: translateX(10px);
+}
+.card::before {
+    content: "VIEW DETAILS"; position: absolute; right: 20px; bottom: 20px;
+    font-family: 'Space Mono'; font-size: 8px; opacity: 0; transition: 0.4s;
+}
+.card:hover::before { opacity: 0.4; }
+
+.work-title{font-size:20px;font-weight:700;margin-bottom:10px;letter-spacing:0.05em}
+.work-desc{font-size:14px;line-height:1.8;color:rgba(237,233,223,0.5)}
+
+/* タイムライン */
+.timeline-item{padding-bottom: 30px; border-left: 1px solid rgba(214,59,26,0.2); padding-left: 24
