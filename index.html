@@ -3,113 +3,92 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SAHA SAKKOR Portfolio</title>
+<title>SAHA SAKKOR | Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#080808;color:#ede9df;font-family:'Noto Sans JP',sans-serif;overflow-x:hidden}
-.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.06;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.12) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.12) 40px);animation:gridMove 18s linear infinite}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 80% 20%,rgba(214,59,26,.12),transparent 35%),radial-gradient(circle at 20% 80%,rgba(214,59,26,.08),transparent 40%);pointer-events:none;z-index:0}
+.grid-bg{position:fixed;inset:0;opacity:.05;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.1) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.1) 40px);animation:gridMove 18s linear infinite;z-index:0}
 @keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(40px)}}
-.pf{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.15fr;min-height:100vh}
-.left{position:relative;min-height:100vh;overflow:hidden}
-.left img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:grayscale(100%) contrast(1.08) brightness(.82)}
+@keyframes glowPulse{0%,100%{opacity:.5}50%{opacity:1}}
+.pf{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.1fr;min-height:100vh}
+.left{position:relative;overflow:hidden;min-height:100vh}
+.left img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.08) brightness(.82);transform:scale(1.03);transition:transform 8s ease}
+.left:hover img{transform:scale(1.08)}
 .left::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 45%,#080808 100%),linear-gradient(to top,#080808 0%,transparent 35%)}
-.name{position:absolute;left:28px;bottom:28px;z-index:2}
-.name h1{font-family:'Bebas Neue',sans-serif;font-size:78px;line-height:.88;letter-spacing:.02em}
-.name p{font-family:'Space Mono',monospace;font-size:11px;opacity:.65;letter-spacing:.18em;text-transform:uppercase;margin-top:8px}
-.right{padding:32px 28px;display:flex;flex-direction:column;gap:16px;justify-content:center}
-.section-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;color:#d63b1a;text-transform:uppercase}
-.card{border:1px solid rgba(255,255,255,.08);border-left:2px solid #d63b1a;padding:14px 16px;background:rgba(255,255,255,.02);backdrop-filter:blur(4px);opacity:0;transform:translateY(30px);transition:all .8s ease}
-.card:hover{transform:translateY(-4px)}
-.work-title{font-size:18px;font-weight:500;margin:6px 0;color:rgba(237,233,223,.96)}
-.work-desc{font-size:13px;line-height:1.75;color:rgba(237,233,223,.62)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
-.stat{border:1px solid rgba(255,255,255,.06);padding:12px;text-align:center}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;color:#ede9df}
-.stat-label{font-size:10px;letter-spacing:.12em;opacity:.5}
-@media(max-width:768px){
-.pf{grid-template-columns:1fr}
-.left{min-height:52vh}
-.left::after{background:linear-gradient(to top,#080808 0%,transparent 55%)}
-.name h1{font-size:52px}
-.right{padding:22px}
-.stats{grid-template-columns:1fr 1fr 1fr}
-}
+.name{position:absolute;left:30px;bottom:30px;z-index:2}
+.name h1{font-family:'Bebas Neue',sans-serif;font-size:86px;line-height:.86;letter-spacing:.02em;text-shadow:0 0 18px rgba(0,0,0,.35)}
+.name p{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;opacity:.7;margin-top:8px}
+.badges{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.badge{border:1px solid rgba(255,255,255,.1);padding:6px 10px;font-size:10px;letter-spacing:.08em;background:rgba(255,255,255,.03)}
+.right{padding:34px 28px;display:flex;flex-direction:column;gap:16px;justify-content:center}
+.hero{padding:16px 0 8px}
+.hero-title{font-size:28px;font-weight:700;line-height:1.4}
+.hero-sub{margin-top:10px;font-size:14px;line-height:1.9;color:rgba(237,233,223,.62)}
+.section-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;color:#d63b1a;text-transform:uppercase;animation:glowPulse 3s infinite}
+.hero-line{height:1px;background:linear-gradient(90deg,#d63b1a 0%,rgba(214,59,26,0) 100%);margin:10px 0 14px}
+.card{border:1px solid rgba(255,255,255,.08);border-left:2px solid #d63b1a;padding:14px 16px;background:rgba(255,255,255,.02);backdrop-filter:blur(8px);opacity:0;transform:translateY(30px);transition:all .8s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.timeline{position:relative;padding-left:18px}.timeline::before{content:'';position:absolute;left:5px;top:4px;bottom:4px;width:1px;background:rgba(214,59,26,.45)}
+.timeline-item{position:relative;padding:10px 0 10px 12px}.timeline-item::before{content:'';position:absolute;left:-1px;top:18px;width:8px;height:8px;border-radius:50%;background:#d63b1a;box-shadow:0 0 12px rgba(214,59,26,.45)}
+.work-title{font-size:18px;font-weight:600;margin-bottom:6px}.work-desc{font-size:13px;line-height:1.8;color:rgba(237,233,223,.62)}
+.skills-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.skill-chip{font-family:'Space Mono',monospace;font-size:10px;padding:6px 10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid rgba(255,255,255,.06);padding:14px;text-align:center;background:rgba(255,255,255,.02);opacity:0;transform:translateY(30px);transition:all .8s ease}.stat-num{font-family:'Bebas Neue',sans-serif;font-size:38px}.stat-label{font-size:10px;letter-spacing:.12em;opacity:.5}
+@media(max-width:768px){.pf{grid-template-columns:1fr}.left{min-height:54vh}.name h1{font-size:54px}.right{padding:22px}.stats{grid-template-columns:1fr 1fr 1fr}.hero-title{font-size:22px}}
 
-.timeline{position:relative;padding-left:18px}
-.timeline::before{content:'';position:absolute;left:5px;top:4px;bottom:4px;width:1px;background:rgba(214,59,26,.45)}
-.timeline-item{position:relative;padding:10px 0 10px 12px}
-.timeline-item::before{content:'';position:absolute;left:-1px;top:18px;width:8px;height:8px;border-radius:50%;background:#d63b1a;box-shadow:0 0 12px rgba(214,59,26,.45)}
-.skills-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.skill-chip{font-family:'Space Mono',monospace;font-size:10px;padding:6px 10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);letter-spacing:.06em}
-.hero-line{height:1px;background:linear-gradient(90deg,#d63b1a 0%,rgba(214,59,26,0) 100%);margin:10px 0 18px}
-.glow{box-shadow:0 0 30px rgba(214,59,26,.08)}
-</style>
+@keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.hero-title{animation:floatSlow 6s ease-in-out infinite}
+.badge{position:relative;overflow:hidden}
+.badge::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);background-size:200% 100%;animation:shimmer 3.2s linear infinite}
+
 </head>
 <body>
 <div class="grid-bg"></div>
 <div class="pf">
-  <div class="left">
-    <img src="image.png" alt="SAHA SAKKOR">
-    <div class="name">
-      <h1>SAHA<br>SAKKOR</h1>
-      <p>Creative Producer</p>
-    </div>
-  </div>
-  <div class="right">
-    <div class="section-tag">Career</div><div class="hero-line"></div>
-    <div class="card glow"><div class="timeline">
-      <div class="timeline-item"><div class="work-title">2021–2025 東京都立大学</div><div class="work-desc">在学中3社にてインターン経験。営業・企画・制作を横断して実務経験を蓄積。</div></div>
-      <div class="timeline-item"><div class="work-title">2025.4 CyberAgent / AbemaTV</div><div class="work-desc">広告営業・番組企画・クリエイティブディレクションに従事。</div></div>
-      <div class="timeline-item"><div class="work-title">2025.10 Freelance → SuiSui設立</div><div class="work-desc">独立後、Creative全般のプロデュース・ディレクションに加え、SuiSuiを立ち上げ。配信・SNS・映像演出・事業開発まで一気通貫で支援。</div></div>
-    </div></div>
-
-    <div class="section-tag">Selected Works</div>
-    <div class="card">
-      <div class="work-title">App Creative Direction</div>
-      <div class="work-desc">アプリのクリエイティブ演出を10本以上プロデュース。コンセプト設計からビジュアル・映像表現まで一気通貫でディレクション。</div>
-    </div>
-    <div class="card">
-      <div class="work-title">SNS Strategy & Consulting</div>
-      <div class="work-desc">複数クライアントのSNSアカウント戦略立案・運用を担当。ブランドのオンライン存在感をゼロから設計。</div>
-    </div>
-    <div class="card">
-      <div class="work-title">Program Direction</div>
-      <div class="work-desc">番組のコンテンツ企画・ディレクションに従事。映像とビジネスをつなぐ視点で、場と空気をつくる。</div>
-    </div>
-
-    <div class="section-tag">Can Do</div>
-    <div class="card">
-      <div class="work-title">CAN DO EVERYTHING</div>
-      <div class="work-desc">Creative Produce / SNS運用 / 映像演出 / 番組制作 / 広告企画 / コンセプト設計 / 事業開発</div>
-      <div class="skills-row"><span class="skill-chip">Creative Produce</span><span class="skill-chip">SNS</span><span class="skill-chip">映像演出</span><span class="skill-chip">配信</span><span class="skill-chip">Business Dev</span></div>
-    </div>
-
-    <div class="stats">
-      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">WORKS</div></div>
-      <div class="stat"><div class="stat-num">3+</div><div class="stat-label">CLIENTS</div></div>
-      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">CREATIVE</div></div>
-    </div>
-  </div>
-  </div>
-  </div>
+<div class="left">
+<img src="image.png" alt="SAHA SAKKOR">
+<div class="name">
+<h1>SAHA<br>SAKKOR</h1>
+<p>Creative Producer / Founder of SuiSui</p>
+<div class="badges"><span class="badge">PRODUCE</span><span class="badge">DIRECTION</span><span class="badge">STRATEGY</span></div>
+</div>
+</div>
+<div class="right">
+<div class="hero">
+<div class="section-tag">Creative Portfolio</div>
+<div class="hero-line"></div>
+<div class="hero-title">ブランドの世界観を、<br>企画から演出まで一気通貫で創る。</div>
+<div class="hero-sub">広告営業・番組企画・SNS戦略・ライブ配信演出まで横断し、アイデアを成果に変えるクリエイティブプロデューサー。独立後は <b>SuiSui</b> を立ち上げ、制作と事業の両輪で支援。</div>
+</div>
+<div class="section-tag">Career</div>
+<div class="card"><div class="timeline">
+<div class="timeline-item"><div class="work-title">2021–2025 東京都立大学</div><div class="work-desc">在学中3社でインターンを経験し、営業・企画・制作を横断して実務を経験。</div></div>
+<div class="timeline-item"><div class="work-title">2025.4 CyberAgent / AbemaTV</div><div class="work-desc">広告営業、番組企画、コンテンツ提案、配信ディレクションに従事。</div></div>
+<div class="timeline-item"><div class="work-title">2025.10 Freelance / SuiSui</div><div class="work-desc">Creative Produce、配信演出、SNSコンサル、映像企画、事業立ち上げ支援。</div></div>
+</div></div>
+<div class="section-tag">Selected Works</div>
+<div class="card"><div class="work-title">App Creative Direction</div><div class="work-desc">アプリの演出企画を10本以上プロデュース。企画・構成・演出・クリエイティブ監修まで一気通貫で担当。</div></div>
+<div class="card"><div class="work-title">SNS Strategy & Consulting</div><div class="work-desc">複数ブランドのSNS戦略立案・運用・導線設計。オンラインでの存在感をゼロから構築。</div></div>
+<div class="card"><div class="work-title">Live Streaming & Program Direction</div><div class="work-desc">配信機材選定、レクチャー、現場ディレクション、演出設計までトータルで対応。</div></div>
+<div class="section-tag">Can Do</div>
+<div class="card"><div class="work-title">CAN DO EVERYTHING</div><div class="work-desc">Creative Produce / SNS運用 / 配信演出 / 番組制作 / 広告企画 / Business Development</div><div class="skills-row"><span class="skill-chip">Creative</span><span class="skill-chip">Streaming</span><span class="skill-chip">SNS</span><span class="skill-chip">Business</span><span class="skill-chip">Direction</span></div></div>
+<div class="stats"><div class="stat"><div class="stat-num">10+</div><div class="stat-label">WORKS</div></div><div class="stat"><div class="stat-num">3+</div><div class="stat-label">CLIENTS</div></div><div class="stat"><div class="stat-num">24/7</div><div class="stat-label">CREATIVE</div></div></div>
+</div>
 </div>
 <script>
 window.addEventListener('DOMContentLoaded', function(){
-  const observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.style.opacity='1';
-        entry.target.style.transform='translateY(0)';
-      }
-    });
-  }, {threshold:0.15});
-  document.querySelectorAll('.card,.stat').forEach(function(el, i){
-    el.style.transitionDelay = (i * 0.12) + 's';
-    observer.observe(el);
-  });
+ const observer = new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)';}})},{threshold:0.12});
+ document.querySelectorAll('.card,.stat').forEach(function(el,i){el.style.transitionDelay=(i*0.1)+'s';observer.observe(el);});
+});
+
+window.addEventListener('scroll', function(){
+  const img = document.querySelector('.left img');
+  const y = window.scrollY * 0.03;
+  if(img){ img.style.transform = 'scale(1.05) translateY(' + y + 'px)'; }
 });
 </script>
 </body>
