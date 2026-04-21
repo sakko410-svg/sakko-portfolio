@@ -1,241 +1,134 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SAHA SAKKOR | Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;500;700&family=Space+Mono&display=swap" rel="stylesheet">
-<style>
-:root {
-    --accent: #d63b1a;
-    --bg: #080808;
-    --text: #ede9df;
-    --card-bg: rgba(255, 255, 255, 0.02);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAHA SAKKOR | Creative Producer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;500;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #d63b1a; --bg: #050505; --text: #ede9df; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; line-height: 1.7; overflow-x: hidden; }
 
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;overflow-x:hidden;-webkit-font-smoothing: antialiased;}
+        /* レイアウト：PCは2列、スマホは縦並び */
+        .container { display: flex; flex-wrap: wrap; min-height: 100vh; }
 
-/* --- 演出1: フィルムノイズテクスチャ --- */
-body::after {
-    content: "";
-    position: fixed;
-    top: -100%; left: -100%; width: 300%; height: 300%;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Grain.png");
-    opacity: 0.04; pointer-events: none; z-index: 100;
-    animation: noise 0.2s infinite;
-}
-@keyframes noise {
-    0% { transform: translate(0,0) }
-    10% { transform: translate(-5%,-5%) }
-    20% { transform: translate(-10%,5%) }
-    80% { transform: translate(5%,-10%) }
-    100% { transform: translate(0,0) }
-}
+        /* 左側：固定ビジュアル（スマホでは高さを抑える） */
+        .visual-area {
+            width: 45%; height: 100vh; position: sticky; top: 0;
+            background: #000; overflow: hidden;
+        }
+        .visual-area img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%) brightness(0.7);
+        }
+        .visual-area::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent 70%, var(--bg) 100%);
+        }
 
-/* --- 背景グリッド（より繊細に） --- */
-.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 49px,rgba(255,255,255,.1) 50px),repeating-linear-gradient(90deg,transparent,transparent 49px,rgba(255,255,255,.1) 50px);}
+        .hero-name { position: absolute; left: 10%; bottom: 8%; z-index: 5; }
+        .hero-name h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 9vw, 110px); line-height: 0.82; }
+        .hero-name p { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.3em; opacity: 0.6; margin-top: 15px; }
 
-/* --- レイアウト構造 --- */
-.pf{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.2fr;min-height:100vh}
+        /* 右側：コンテンツエリア */
+        .content-area { width: 55%; padding: 80px 8%; display: flex; flex-direction: column; gap: 60px; }
 
-/* --- 左側：シネマティック画像エリア --- */
-.left{position:relative;height:100vh;overflow:hidden;position:sticky;top:0;}
-.left img{
-    width:100%;height:100%;object-fit:cover;object-position:center top;
-    filter:grayscale(100%) contrast(1.1) brightness(0.7);
-    transform:scale(1.1);
-    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal-img img { transform: scale(1); } /* 登場時にズームアウト */
+        .section-tag { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.3em; margin-bottom: 20px; display: block; }
 
-.left::after{
-    content:'';position:absolute;inset:0;
-    background: linear-gradient(90deg, transparent 60%, var(--bg) 100%),
-                linear-gradient(0deg, var(--bg) 0%, transparent 40%);
-}
+        /* ビジネスライクなテキスト構成 */
+        .biz-title { font-size: 26px; font-weight: 700; line-height: 1.4; margin-bottom: 20px; }
+        .biz-text { font-size: 15px; color: rgba(237, 233, 223, 0.7); margin-bottom: 30px; }
 
-.name{position:absolute;left:40px;bottom:60px;z-index:2}
-.name h1{
-    font-family:'Bebas Neue',sans-serif;font-size:clamp(60px, 10vw, 110px);
-    line-height:.82;letter-spacing:-0.02em;
-    overflow: hidden;
-}
-.name h1 span {
-    display: block;
-    transform: translateY(100%);
-    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.reveal-text h1 span { transform: translateY(0); }
+        .card {
+            border: 1px solid rgba(255,255,255,0.08); padding: 30px;
+            background: rgba(255,255,255,0.02); transition: 0.3s;
+        }
+        .card:hover { border-color: var(--accent); background: rgba(255,255,255,0.04); }
+        .card-h { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #fff; }
 
-.name p{
-    font-family:'Space Mono',monospace;font-size:12px;opacity:0;
-    letter-spacing:.4em;text-transform:uppercase;margin-top:15px;
-    transition: all 1s ease 0.5s;
-}
-.reveal-text p { opacity: 0.6; transform: translateX(10px); }
+        /* キャリアタイムライン */
+        .history { border-left: 1px solid rgba(214,59,26,0.3); padding-left: 25px; }
+        .history-item { position: relative; margin-bottom: 40px; }
+        .history-item::before { content: ''; position: absolute; left: -29.5px; top: 10px; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; }
 
-/* --- 右側：コンテンツ --- */
-.right{padding:80px 60px;display:flex;flex-direction:column;gap:40px}
-
-.section-tag{
-    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.3em;
-    color:var(--accent);text-transform:uppercase;margin-bottom:10px;
-    display: flex; align-items: center; gap: 10px;
-}
-.section-tag::before { content: ""; width: 20px; height: 1px; background: var(--accent); }
-
-/* --- カードデザイン：磁気のようなホバー --- */
-.reveal-item { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
-.reveal-item.is-visible { opacity: 1; transform: translateY(0); }
-
-.card{
-    border: 1px solid rgba(255,255,255,0.05); border-left: 2px solid transparent;
-    padding: 24px; background: var(--card-bg); backdrop-filter: blur(10px);
-    transition: all 0.4s ease; cursor: pointer; position: relative;
-}
-.card:hover{
-    background: rgba(255,255,255,0.05); border-left: 2px solid var(--accent);
-    transform: translateX(10px);
-}
-.card::before {
-    content: "VIEW DETAILS"; position: absolute; right: 20px; bottom: 20px;
-    font-family: 'Space Mono'; font-size: 8px; opacity: 0; transition: 0.4s;
-}
-.card:hover::before { opacity: 0.4; }
-
-.work-title{font-size:20px;font-weight:700;margin-bottom:10px;letter-spacing:0.05em}
-.work-desc{font-size:14px;line-height:1.8;color:rgba(237,233,223,0.5)}
-
-/* タイムライン */
-.timeline-item{padding-bottom: 30px; border-left: 1px solid rgba(214,59,26,0.2); padding-left: 24px; position: relative;}
-.timeline-item::after{
-    content: ""; position: absolute; left: -4.5px; top: 8px;
-    width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
-}
-
-.skill-chip{
-    font-family:'Space Mono',monospace;font-size:10px;padding:6px 12px;
-    border:1px solid rgba(255,255,255,.1); color: rgba(255,255,255,0.6);
-}
-
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.stat{text-align:center; padding: 20px; border: 1px solid rgba(255,255,255,0.03);}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:42px; color: var(--accent);}
-
-/* --- レスポンシブ --- */
-@media(max-width:768px){
-    .pf{grid-template-columns:1fr}
-    .left{height:60vh; position: relative;}
-    .right{padding:40px 20px}
-    .name h1{font-size:70px}
-    .stats{grid-template-columns: 1fr;}
-}
-</style>
+        /* スマホ最適化（ここを大幅強化） */
+        @media (max-width: 1024px) {
+            .visual-area { width: 100%; height: 55vh; position: relative; }
+            .content-area { width: 100%; padding: 50px 30px; }
+            .visual-area::after { background: linear-gradient(to top, var(--bg) 0%, transparent 50%); }
+            .hero-name { left: 30px; bottom: 30px; }
+        }
+    </style>
 </head>
-<body class="loading">
+<body>
 
-<div class="grid-bg"></div>
-
-<div class="pf">
-    <div class="left" id="hero-img">
+<div class="container">
+    <div class="visual-area">
         <img src="image.png" alt="SAHA SAKKOR">
-        <div class="name" id="hero-text">
-            <h1><span>SAHA</span><span>SAKKOR</span></h1>
-            <p>Creative Producer</p>
+        <div class="hero-name">
+            <h1>SAHA<br>SAKKOR</h1>
+            <p>Creative Producer / Business Designer</p>
         </div>
     </div>
 
-    <div class="right">
-        <div class="reveal-item">
-            <div class="section-tag">Philosophy</div>
-            <h2 style="font-size:28px; font-weight:700; line-height:1.4; margin:15px 0 30px;">
-                ブランドの世界観を、<br><span style="color:var(--accent)">企画から演出まで</span>一気通貫で創る。
-            </h2>
-        </div>
+    <div class="content-area">
+        <section>
+            <span class="section-tag">PHILOSOPHY</span>
+            <h2 class="biz-title">「面白い」を最大化し、<br><span style="color:var(--accent)">ビジネスの格</span>を再定義する。</h2>
+            <p class="biz-text">
+                ただの運用や制作に留まらない。コンセプト設計から演出までを一貫して担い、ブランドの市場価値を向上させるオンライン戦略を構築します。
+                「面白い」を数値と体験に落とし込み、事業成長をクリエイティブで牽引します。
+            </p>
+        </section>
 
-        <div class="reveal-item">
-            <div class="section-tag">Career Path</div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="work-title">2021–2025 Univ.</div>
-                    <div class="work-desc">3つのインターンを経験。営業から制作まで現場主義のキャリアをスタート。</div>
+        <section>
+            <span class="section-tag">CAREER</span>
+            <div class="history">
+                <div class="history-item">
+                    <div class="card-h">2021–2025 Univ. / Early Career</div>
+                    <div class="biz-text">在学中、営業・企画・制作を網羅した3社のインターンに従事。実務を通じた「売れるクリエイティブ」の基礎を確立。</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="work-title">2025 CyberAgent / AbemaTV</div>
-                    <div class="work-desc">広告営業・番組企画。大規模メディアでの演出・ビジネス設計。</div>
+                <div class="history-item">
+                    <div class="card-h">2025.4 CyberAgent / AbemaTV</div>
+                    <div class="biz-text">広告営業・番組企画・配信ディレクション。大規模メディアにおけるコンテンツビジネスの最前線で、戦略的演出を経験。</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="work-title">2025.10 Freelance / SuiSui</div>
-                    <div class="work-desc">クリエイティブの可能性を最大化する制作・支援体制「SuiSui」を設立。</div>
+                <div class="history-item">
+                    <div class="card-h">2025.10 Freelance / SuiSui Founder</div>
+                    <div class="biz-text">制作・支援組織「SuiSui」を設立。SNS・映像・事業開発まで、ビジネスと表現を繋ぐプロデュースを展開。</div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="reveal-item">
-            <div class="section-tag">Selected Expertise</div>
+        <section>
+            <span class="section-tag">SERVICE</span>
             <div class="card">
-                <div class="work-title">App Creative Direction</div>
-                <div class="work-desc">10本以上のプロジェクトを主導。ビジュアル・UX・感情を揺さぶる演出。</div>
+                <div class="card-h">Creative Strategy</div>
+                <div class="biz-text">10本以上のアプリ・映像演出を主導。情緒的価値とロジックを両立させたディレクション。</div>
             </div>
-            <div style="height:15px"></div>
+            <div style="height:20px"></div>
             <div class="card">
-                <div class="work-title">SNS Strategy</div>
-                <div class="work-desc">ただの運用ではない、ブランドの「格」を上げるオンライン戦略。</div>
+                <div class="card-h">SNS Business Design</div>
+                <div class="biz-text">単なる投稿代行ではない、ブランドの「格」を上げるためのアカウント設計とオンライン導線構築。</div>
             </div>
-        </div>
+        </section>
 
-        <div class="reveal-item">
-            <div class="section-tag">Capabilities</div>
-            <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;">
-                <span class="skill-chip">Produce</span>
-                <span class="skill-chip">SNS Strategy</span>
-                <span class="skill-chip">Live Direction</span>
-                <span class="skill-chip">Content Design</span>
-                <span class="skill-chip">Biz Dev</span>
+        <section style="display:flex; justify-content: space-between; border-top:1px solid rgba(255,255,255,0.1); pt:40px;">
+            <div style="text-align:center">
+                <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--accent)">10+</div>
+                <div style="font-size:10px; opacity:0.5">PROJECTS</div>
             </div>
-        </div>
-
-        <div class="stats reveal-item">
-            <div class="stat"><div class="stat-num">10+</div><div class="stat-label">WORKS</div></div>
-            <div class="stat"><div class="stat-num">3+</div><div class="stat-label">CLIENTS</div></div>
-            <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">CREATIVE</div></div>
-        </div>
+            <div style="text-align:center">
+                <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--accent)">24/7</div>
+                <div style="font-size:10px; opacity:0.5">CREATIVITY</div>
+            </div>
+            <div style="text-align:center">
+                <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--accent)">B2B/C</div>
+                <div style="font-size:10px; opacity:0.5">COVERAGE</div>
+            </div>
+        </section>
     </div>
 </div>
 
-<script>
-window.addEventListener('load', function() {
-    // 1. 初回アニメーション
-    setTimeout(() => {
-        document.getElementById('hero-img').classList.add('reveal-img');
-        document.getElementById('hero-text').classList.add('reveal-text');
-    }, 300);
-
-    // 2. スクロール時のフェードイン（Intersection Observer）
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal-item').forEach(item => {
-        observer.observe(item);
-    });
-
-    // 3. パララックス効果（画像）
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const img = document.querySelector('.left img');
-        if (img && window.innerWidth > 768) {
-            img.style.transform = `scale(1) translateY(${scrolled * 0.15}px)`;
-        }
-    });
-});
-</script>
 </body>
 </html>
